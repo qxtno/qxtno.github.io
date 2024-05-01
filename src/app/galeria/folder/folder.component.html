@@ -1,0 +1,45 @@
+@if (folder) {
+<div
+  class="fixed inset-0 bg-black bg-opacity-90 p-2 flex flex-col justify-center items-center text-white"
+>
+  <div
+    class="bg-contain bg-center bg-no-repeat flex-1 max-w-screen-lg w-full max-h-[90%] mx-auto relative"
+    [style]="{
+      'background-image':
+        'url(https://lh3.googleusercontent.com/d/' +
+        folder.fileIds[currentIndex] +
+        ')'
+    }"
+  >
+    <button
+      class="absolute top-0 right-0 p-2 text-white bg-black bg-opacity-70 flex"
+    >
+      <mat-icon
+        class="scale-150"
+        fontIcon="close"
+        (click)="closePreview.emit()"
+      ></mat-icon>
+    </button>
+    @if(!first){
+    <button
+      class="absolute top-1/2 left-0 p-2 text-white bg-black bg-opacity-70 flex"
+      (click)="moveLeft()"
+    >
+      <mat-icon fontIcon="chevron_left"></mat-icon>
+    </button>
+    } @if(!last){
+    <button
+      class="absolute top-1/2 right-0 p-2 text-white bg-black bg-opacity-70 flex"
+      (click)="moveRight()"
+    >
+      <mat-icon fontIcon="chevron_right"></mat-icon>
+    </button>
+    }
+    <div class="absolute bottom-0 left-0 right-0 flex justify-center">
+      <span class="bg-black bg-opacity-70 text-white p-2">
+        {{ currentIndex + 1 }}/{{ folder.fileIds.length }}
+      </span>
+    </div>
+  </div>
+</div>
+}

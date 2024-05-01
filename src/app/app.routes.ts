@@ -1,34 +1,26 @@
 import { Routes } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { DetailsComponent } from './details/details.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 import { HomeComponent } from './home/home.component';
+import { IntencjeComponent } from './intencje/intencje.component';
+import { IntencjeWybraneComponent } from './intencje/intencje.wybrane/intencje.wybrane.component';
+import { NabozenstwaComponent } from './nabozenstwa/nabozenstwa.component';
+import { OgloszeniaComponent } from './ogloszenia/ogloszenia.component';
+import { OgloszeniaWybraneComponent } from './ogloszenia/ogloszenia.wybrane/ogloszenia.wybrane.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    title: 'karolsledz',
-    data: { description: 'to jest strona główna' },
-  },
+  { path: '', component: HomeComponent },
   {
     path: 'admin',
     loadComponent: () =>
       import('./admin-panel/admin-panel.component').then(
         (m) => m.AdminPanelComponent
       ),
-    title: 'Admin',
-    data: { description: 'to jest strona admina' },
   },
-  {
-    path: 'details',
-    component: DetailsComponent,
-    title: 'Details',
-    data: { description: 'to jest strona details' },
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-    title: 'About',
-    data: { description: 'to jest strona about' },
-  },
+  { path: 'intencje', component: IntencjeComponent },
+  { path: 'intencje/:date', component: IntencjeWybraneComponent },
+  { path: 'ogloszenia', component: OgloszeniaComponent },
+  { path: 'ogloszenia/:date', component: OgloszeniaWybraneComponent },
+  { path: 'galeria', component: GaleriaComponent },
+  { path: 'nabozenstwa', component: NabozenstwaComponent },
+  { path: '**', redirectTo: '' },
 ];

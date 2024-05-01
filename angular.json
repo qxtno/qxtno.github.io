@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "qxtno.github.io": {
+    "strona": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/qxtno.github.io",
+            "outputPath": "dist/strona",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -23,13 +23,18 @@
             "assets": [
               "src/favicon.ico",
               "src/robots.txt",
-              "src/sitemap.xml",
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -59,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "qxtno.github.io:build:production"
+              "buildTarget": "strona:build:production"
             },
             "development": {
-              "buildTarget": "qxtno.github.io:build:development"
+              "buildTarget": "strona:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -70,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "qxtno.github.io:build"
+            "buildTarget": "strona:build"
           }
         },
         "test": {
@@ -86,6 +91,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -93,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

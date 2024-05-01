@@ -4,9 +4,15 @@
     <loc>https://karolsledz.pl</loc>
   </url>
   <url>
-    <loc>https://karolsledz.pl/details</loc>
+    <loc>https://karolsledz.pl/ogloszenia</loc>
   </url>
   <url>
-    <loc>https://karolsledz.pl/about</loc>
+    <loc>https://karolsledz.pl/intencje</loc>
+  </url>
+  <url>
+    <loc>https://karolsledz.pl/nabozenstwa</loc>
+  </url>
+  <url>
+    <loc>https://karolsledz.pl/galeria</loc>
   </url>
 </urlset>

@@ -1,61 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterModule,
-  RouterOutlet,
-} from '@angular/router';
-import { filter } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { NotificationsOutletComponent } from './notifications-outlet/notifications-outlet.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    MatIconModule,
+    CommonModule,
+    NotificationsOutletComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  title = 'karolsledz';
+export class AppComponent {
+  title = 'strona';
+  menuOpen = false;
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private metaService: Meta
-  ) {}
+  menuOptions = [
+    { name: 'Strona główna', path: '/' },
+    { name: 'Ogłoszenia', path: '/ogloszenia' },
+    { name: 'Intencje', path: '/intencje' },
+    { name: 'Nabożeństwa', path: '/nabozenstwa' },
+    { name: 'Galeria', path: '/galeria' },
+  ];
 
-  ngOnInit(): void {
-    this.metaService.updateTag({ name: 'author', content: 'karolsledz' });
-    this.metaService.updateTag({
-      name: 'keywords',
-      content: 'karolsledz,angular,portfolio',
-    });
-    this.metaService.updateTag({ name: 'robots', content: 'index,follow' });
-
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const rt = this.getChild(this.activatedRoute);
-        rt.data.subscribe((data) => {
-          const description = data['description'];
-          if (description) {
-            this.metaService.updateTag({
-              name: 'description',
-              content: description,
-            });
-          } else {
-            this.metaService.removeTag('name="description"');
-          }
-        });
-      });
+  toggle() {
+    this.menuOpen = !this.menuOpen;
   }
-
-  getChild(activatedRoute: ActivatedRoute): ActivatedRoute {
-    if (activatedRoute.firstChild) {
-      return this.getChild(activatedRoute.firstChild);
-    } else {
-      return activatedRoute;
-    }
+  closeMenu() {
+    this.menuOpen = false;
   }
 }

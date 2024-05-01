@@ -1,0 +1,16 @@
+<h2 class="text-xl font-bold">{{ title }}</h2>
+<app-html-renderer [buffer]="buffer"></app-html-renderer>
+
+@if(ogloszenia.length > 0) {
+<hr class="my-4" />
+<h3 class="text-xl font-semibold">Archiwalne ogłoszenia:</h3>
+<ul class="py-2">
+  @for (ogloszenie of ogloszenia; track $index) {
+  <li>
+    <a [routerLink]="['/ogloszenia', ogloszenie]" class="hover:underline">
+      {{ formatDate(ogloszenie) }}
+    </a>
+  </li>
+  }
+</ul>
+}

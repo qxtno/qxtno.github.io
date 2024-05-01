@@ -1,0 +1,3 @@
+:host {
+  @apply h-0 min-h-full flex flex-col;
+}
