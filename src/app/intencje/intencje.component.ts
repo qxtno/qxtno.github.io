@@ -13,29 +13,12 @@ import { formatDate } from '../utils';
   styleUrl: './intencje.component.css',
 })
 export class IntencjeComponent implements OnInit {
-  private httpClient = inject(HttpClient);
-
   public intencje: string[] = [];
   public buffer: ArrayBuffer | undefined;
   public title: string = '';
 
   ngOnInit(): void {
     const that = this;
-    that.httpClient.get('assets/intencje.json').subscribe((data) => {
-      const [date, ...intencje] = (data as string[]).filter((date) =>
-        dayjs(date).isBefore(dayjs())
-      );
-      that.intencje = intencje;
-      that.title = `Intencje ${formatDate(date)}`;
-
-      that.httpClient
-        .get(`assets/intencje/${date}.html`, {
-          responseType: 'arraybuffer',
-        })
-        .subscribe((buffer) => {
-          that.buffer = buffer;
-        });
-    });
   }
 
   public formatDate(date: string) {

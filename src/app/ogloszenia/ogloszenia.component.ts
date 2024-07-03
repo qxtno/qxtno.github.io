@@ -21,22 +21,6 @@ export class OgloszeniaComponent implements OnInit {
 
   ngOnInit(): void {
     const that = this;
-
-    that.httpClient.get('assets/ogloszenia.json').subscribe((data) => {
-      const [date, ...ogloszenia] = (data as string[]).filter((date) =>
-        dayjs(date).isBefore(dayjs())
-      );
-      that.ogloszenia = ogloszenia;
-      that.title = `Ogłoszenia ${dayjs(date).format('D MMMM YYYY')}`;
-
-      that.httpClient
-        .get(`assets/ogloszenia/${date}.html`, {
-          responseType: 'arraybuffer',
-        })
-        .subscribe((buffer) => {
-          that.buffer = buffer;
-        });
-    });
   }
 
   formatDate(date: string) {
