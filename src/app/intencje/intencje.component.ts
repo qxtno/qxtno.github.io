@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import dayjs from 'dayjs';
 import { HtmlRendererComponent } from '../html-renderer/html-renderer.component';
 import { formatDate } from '../utils';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-intencje',
@@ -17,8 +18,16 @@ export class IntencjeComponent implements OnInit {
   public buffer: ArrayBuffer | undefined;
   public title: string = '';
 
+  constructor(private titleService: Title, private metaService: Meta) { }
+
   ngOnInit(): void {
     const that = this;
+    const title = 'Intencje';
+    const tags = { name: 'keywords', content: 'intencje' };
+    const description = { name: 'description', content: 'intencje' };
+    this.metaService.updateTag(tags);
+    this.metaService.updateTag(description);
+    this.titleService.setTitle(title);
   }
 
   public formatDate(date: string) {

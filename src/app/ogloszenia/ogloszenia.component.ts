@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import dayjs from 'dayjs';
 import { HtmlRendererComponent } from '../html-renderer/html-renderer.component';
 import { formatDate } from '../utils';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ogloszenia',
@@ -19,8 +20,16 @@ export class OgloszeniaComponent implements OnInit {
   public buffer: ArrayBuffer | undefined;
   public title: string = '';
 
+  constructor(private titleService: Title, private metaService: Meta) { }
+
   ngOnInit(): void {
     const that = this;
+    const title = 'Ogłoszenia';
+    const tags = { name: 'keywords', content: 'ogloszenia' };
+    const description = { name: 'description', content: 'ogloszenia' };
+    this.metaService.updateTag(tags);
+    this.metaService.updateTag(description);
+    this.titleService.setTitle(title);
   }
 
   formatDate(date: string) {
